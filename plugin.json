@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mentiondock",
+  "version": "0.1.2",
+  "description": "Find Instagram and TikTok creators and inspect their profiles and recent stored posts with MentionDock. Your AI organizes and compares the returned data.",
+  "author": {
+    "name": "MentionDock",
+    "url": "https://mentiondock.com"
+  },
+  "homepage": "https://mentiondock.com",
+  "repository": "https://github.com/pietrastudio/mentiondock-skill",
+  "keywords": ["influencer-discovery", "instagram", "tiktok", "creator-research"],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "MentionDock",
+        "developerName": "MentionDock",
+        "shortDescription": "Find and research creators",
+        "longDescription": "Search Instagram and TikTok creator data by handle, hashtag, or topic. Retrieve profiles and up to five recent stored posts per creator, then let your AI compare candidates and organize the results. Requires Node.js 22.20 or later, the MentionDock CLI, local command execution, and Google sign-in. Installing the Skill is free; data queries consume purchased MentionDock credits. Credit packs and subscriptions use Stripe Checkout, where you confirm payment in your browser. Review the public Skill and installation details before installing.",
+        "category": "Productivity",
+        "capabilities": [],
+        "websiteURL": "https://mentiondock.com",
+        "supportURL": "https://github.com/pietrastudio/mentiondock-skill/issues",
+        "privacyPolicyURL": "https://mentiondock.com/privacy",
+        "termsOfServiceURL": "https://mentiondock.com/terms",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png",
+        "defaultPrompt": [
+          "Find Instagram skincare creators with 10,000 to 100,000 followers.",
+          "Look up a TikTok creator by handle and summarize their recent stored posts."
+        ]
+      }
+    }
+  }
+}

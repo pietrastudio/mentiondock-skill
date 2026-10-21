@@ -1,0 +1,14 @@
+{
+  "name": "mentiondock",
+  "description": "MentionDock's publisher-maintained marketplace for creator data Skills.",
+  "owner": {
+    "name": "MentionDock"
+  },
+  "plugins": [
+    {
+      "name": "mentiondock",
+      "source": "./",
+      "description": "Instagram and TikTok creator data for your AI, using the separately installed MentionDock CLI."
+    }
+  ]
+}
