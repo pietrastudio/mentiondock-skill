@@ -9,6 +9,7 @@
   },
   "homepage": "https://mentiondock.com",
   "repository": "https://github.com/pietrastudio/mentiondock-skill",
+  "license": "Proprietary",
   "keywords": ["influencer-discovery", "instagram", "tiktok", "creator-research"],
   "extensions": {
     "com.openai": {

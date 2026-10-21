@@ -2,9 +2,9 @@
 
 Find Instagram and TikTok creators by handle, hashtag, or topic, then let your AI compare and analyze the returned profiles and recent stored posts.
 
-[Website](https://mentiondock.com) · [CLI on npm](https://www.npmjs.com/package/mentiondock) · [Security and permissions](SECURITY.md)
+[Website](https://mentiondock.com) · [CLI on npm](https://www.npmjs.com/package/mentiondock) · [On skills.sh](https://skills.sh/pietrastudio/mentiondock-skill/mentiondock) · [Security and permissions](SECURITY.md)
 
-This repository distributes the MentionDock Skill and agent integration metadata. Its Skill matches the published `mentiondock@0.1.2` CLI. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
+This repository distributes the MentionDock Skill and agent integration metadata. Its commands target the published `mentiondock@0.1.2` CLI, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
 
 ## Requirements
 
@@ -82,3 +82,7 @@ Data queries use existing credits. Credit purchases and subscriptions require yo
 - [Security and permissions](SECURITY.md): local files, network destinations, login, payment, and the scope of available checks.
 
 All integrations load the same Skill. A supported installation format, a directory listing, and a security assessment are different things; this repository makes no claim of platform security certification.
+
+## License
+
+Proprietary. The public repository makes the integration available for inspection and installation with MentionDock. No open-source license is granted for the Skill, CLI, service, or brand assets.

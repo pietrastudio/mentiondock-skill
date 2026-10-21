@@ -63,6 +63,8 @@ Browser launching uses fixed operating-system programs with separate arguments. 
 
 ## Checks and their limits
 
+[Snyk's independent report on skills.sh](https://skills.sh/pietrastudio/mentiondock-skill/mentiondock/security/snyk) currently reports two medium-level capability risks: handling third-party social content and offering payment commands. The report recognizes that Stripe performs payment authentication and confirmation outside the agent. Read its current findings before installation; directory availability does not mean a clean scan or certification.
+
 The [dated scan reports](audits/2026-10-21/README.md) include a maintainer-run Cisco AI Skill Scanner check of the exact published Skill: no critical, high, medium, or low findings, with one informational finding about its missing license declaration. The report records the tool version and Skill hash so the scope can be checked.
 
 On 2026-10-21, the published `mentiondock@0.1.2` tarball's integrity was verified, and a maintainer-run `npm audit` of a freshly resolved dependency tree reported **0 known vulnerabilities**.

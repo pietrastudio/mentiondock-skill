@@ -14,7 +14,7 @@ The Cisco report's machine-specific `skill_path` was replaced with the repositor
 Skill SHA-256:
 
 ```text
-bceeb7f40e1dd0d90feb124a0c567fe4de72b28a3c5ad94355f21248ddd25e02
+3e9d7c9381af0b447d9aeb8e3b81119c33180367f6d7ebdf556bbfe6d5c8145c
 ```
 
 CLI tarball: [registry.npmjs.org/mentiondock/-/mentiondock-0.1.2.tgz](https://registry.npmjs.org/mentiondock/-/mentiondock-0.1.2.tgz)
