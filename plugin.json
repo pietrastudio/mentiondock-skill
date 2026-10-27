@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mentiondock",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Find Instagram and TikTok creators and inspect their profiles and recent stored posts with MentionDock. Your AI organizes and compares the returned data.",
   "author": {
     "name": "MentionDock",
@@ -18,7 +18,7 @@
         "displayName": "MentionDock",
         "developerName": "MentionDock",
         "shortDescription": "Find and research creators",
-        "longDescription": "Search Instagram and TikTok creator data by handle, hashtag, or topic. Retrieve profiles and up to five recent stored posts per creator, then let your AI compare candidates and organize the results. Requires Node.js 22.20 or later, the MentionDock CLI, local command execution, and Google sign-in or an issued API key. Installing the Skill is free; data queries consume MentionDock account credits. Credit packs and subscriptions use Stripe Checkout, where you confirm payment in your browser. Review the public Skill and installation details before installing.",
+        "longDescription": "Find Instagram and TikTok creators by topic or look up known accounts by handle. Retrieve profiles and up to five recent stored posts per creator, then let your AI compare candidates and organize the results. Requires Node.js 22.20 or later, the MentionDock CLI, local command execution, and Google sign-in or an issued API key. Installing the Skill is free; data queries consume MentionDock account credits. Credit packs and subscriptions use Stripe Checkout, where you confirm payment in your browser. Review the public Skill and installation details before installing.",
         "category": "Productivity",
         "capabilities": [],
         "websiteURL": "https://mentiondock.com",
