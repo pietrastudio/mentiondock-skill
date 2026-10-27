@@ -4,7 +4,9 @@ Find Instagram and TikTok creators by handle, hashtag, or topic, then let your A
 
 [Website](https://mentiondock.com) · [CLI on npm](https://www.npmjs.com/package/mentiondock) · [On skills.sh](https://skills.sh/pietrastudio/mentiondock-skill/mentiondock) · [Security and permissions](SECURITY.md)
 
-This repository distributes the MentionDock Skill and agent integration metadata. Its commands target the published `mentiondock@0.1.2` CLI, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
+This repository distributes the MentionDock Skill and agent integration metadata, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
+
+This branch prepares API-key support for an upcoming MentionDock CLI release. Its Skill requires that matching release. Installation instructions and version metadata remain pinned to published `mentiondock@0.1.2` until that release is available; this candidate is not ready for public installation.
 
 ## Requirements
 
@@ -65,7 +67,7 @@ Start a new agent session after installing, then ask:
 
 > Use MentionDock to find 10 skincare creators on Instagram with 10,000 to 100,000 followers, and compare their recent stored posts.
 
-The agent checks your connection and guides you through Google sign-in in your browser when needed. You can also start directly:
+The agent checks your saved connection. With the candidate CLI, an available API key can connect directly with `mentiondock login --api-key "<key>"`; omitting the key opens a hidden prompt. Google sign-in remains available in your browser:
 
 ```sh
 mentiondock login

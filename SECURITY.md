@@ -1,6 +1,6 @@
 # Security and permissions
 
-This document describes the MentionDock Skill paired with the public `mentiondock@0.1.2` CLI. It is a permission and behavior disclosure, not a security certification.
+This document describes the candidate MentionDock Skill and its matching CLI behavior. Package links and installation instructions still refer to public `mentiondock@0.1.2` and must be synchronized after the candidate CLI is released. The dated checks below retain their original version scope. This is a permission and behavior disclosure, not a security certification.
 
 ## Repository and execution boundary
 
@@ -26,7 +26,7 @@ The CLI stores its own state under `~/.mentiondock`:
 
 | Data | Purpose |
 | --- | --- |
-| `credentials.json` | MentionDock access token, account identity, service address, and expiry |
+| `credentials.json` | MentionDock access/refresh tokens for Google sign-in, or an API key, plus account identity, service address, and applicable expiry |
 | `login.json` | Pending Google sign-in and a private PKCE verifier |
 | `requests/` | Query criteria and request IDs for recovery |
 | `purchases/` and `subscriptions/` | Purchase and subscription recovery records |
@@ -36,7 +36,7 @@ Business state directories are created with Unix mode `0700`, and state files wi
 
 Skill installation also writes the chosen user or project Skill directories and installer lock files. Global CLI installation writes npm's configured global location.
 
-`mentiondock logout` in version 0.1.2 removes the local credentials and pending login. Query and billing recovery records remain. Existing tokens retain their expiry, and other device sessions and subscription renewal are unaffected.
+`mentiondock logout` removes the local credentials and pending login. For Google connections it also revokes the current refresh session; existing access tokens retain their expiry. For API-key connections it clears only this computer’s copy, and key revocation remains a separate administrator action. Query and billing recovery records remain; other devices and subscription renewal are unaffected.
 
 ## Network and information sent
 
@@ -47,7 +47,7 @@ Skill installation also writes the chosen user or project Skill directories and 
 | Google sign-in in your browser | Authorizing your MentionDock account |
 | `https://checkout.stripe.com/c/pay/…` in your browser | Confirming a credit-pack purchase or subscription |
 
-Creator queries send their criteria; authenticated requests send the MentionDock token to the selected service. The CLI does not scan or upload arbitrary project files. Data returned by MentionDock becomes visible to the agent you chose and is governed by that agent's data handling.
+Creator queries send their criteria; authenticated requests send the MentionDock access token or API key to the selected service. The CLI does not scan or upload arbitrary project files. Data returned by MentionDock becomes visible to the agent you chose and is governed by that agent's data handling.
 
 An explicit `--service` option or `MENTIONDOCK_URL` environment variable can select another service. The CLI requires an HTTPS origin, allowing HTTP only for local development. Saved credentials and recovery records are bound to their account and service. Authenticated API requests reject redirects.
 
@@ -56,6 +56,8 @@ The installer or your browser may contact additional destinations as part of the
 ## Sign-in and payment
 
 Google sign-in uses PKCE: the CLI stores a private verifier locally and exchanges it with the MentionDock API. Enter Google passwords and verification codes only in the browser. The CLI's login output omits the access token and verifier.
+
+API-key login accepts `mentiondock login --api-key "<key>"` for non-interactive use, or a hidden prompt when the key is omitted. Both verify the account before replacing saved credentials and return safe account information. Command arguments can appear in shell history, process listings, or agent execution logs; the hidden prompt keeps manually entered keys out of command arguments.
 
 Purchases open a validated Stripe checkout URL. Payment details are entered on Stripe's page; the CLI does not collect card numbers. The Skill asks for authorization matching the purchase type, including the recurring amount and renewal terms for subscriptions. Data queries consume existing credits.
 
