@@ -1,12 +1,12 @@
 # MentionDock
 
-Find Instagram and TikTok creators by handle, hashtag, or topic, then let your AI compare and analyze the returned profiles and recent stored posts.
+Find Instagram and TikTok creators by topic or look up a known account by handle, then let your AI compare the returned profiles and recent stored posts.
 
 [Website](https://mentiondock.com) · [CLI on npm](https://www.npmjs.com/package/mentiondock) · [On skills.sh](https://skills.sh/pietrastudio/mentiondock-skill/mentiondock) · [Security and permissions](SECURITY.md)
 
 This repository distributes the MentionDock Skill and agent integration metadata, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
 
-This Skill targets the published `mentiondock@0.1.4` CLI, including API-key connections, Google session renewal, and product suggestions.
+This Skill targets the matching `mentiondock@0.1.5` CLI, including API-key connections, Google session renewal, and product suggestions.
 
 ## Requirements
 
@@ -20,11 +20,11 @@ This Skill targets the published `mentiondock@0.1.4` CLI, including API-key conn
 Install the matching CLI once, before adding the Skill:
 
 ```sh
-npm i -g mentiondock@0.1.4 --ignore-scripts
+npm i -g mentiondock@0.1.5 --ignore-scripts
 mentiondock --version
 ```
 
-The version command should print `0.1.4`. Ensure npm's global command directory is on your `PATH`.
+The version command should print `0.1.5`. Ensure npm's global command directory is on your `PATH`.
 
 `--ignore-scripts` skips the CLI package's automatic Skill installation. Choose one of the following installation methods to let your agent manage its own copy of the Skill.
 
@@ -80,7 +80,7 @@ Data queries use existing credits. Credit purchases and subscriptions require yo
 ## What you can inspect
 
 - [The Skill](skills/mentiondock/SKILL.md): the complete instructions your agent receives.
-- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.4?activeTab=code): the code that runs locally.
+- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.5?activeTab=code): the code that runs locally.
 - [Security and permissions](SECURITY.md): local files, network destinations, login, payment, and the scope of available checks.
 
 All integrations load the same Skill. A supported installation format, a directory listing, and a security assessment are different things; this repository makes no claim of platform security certification.

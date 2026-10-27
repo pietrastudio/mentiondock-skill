@@ -1,6 +1,6 @@
 ---
 name: mentiondock
-description: Query raw Instagram and TikTok creator data with MentionDock, find candidates by handle or content topic, and manage connections, credit packs, subscriptions, payment and query recovery, CLI updates, and product suggestions. Ask whether to send feedback when a requested capability is unsupported, and submit suggestions when the user agrees. The user's own AI organizes, compares, and analyzes the returned creator data.
+description: Find and research Instagram and TikTok creators with MentionDock, retrieve raw account and post data, and manage connections, credit packs, subscriptions, payment and query recovery, CLI updates, and product suggestions. Ask whether to send feedback when a requested capability is unsupported, and submit suggestions when the user agrees. The user's own AI organizes, compares, and analyzes the returned creator data.
 compatibility: Node.js 22.20+, installed mentiondock CLI, local CLI execution, network access to MentionDock, and a browser for Google sign-in or Stripe payment.
 ---
 
@@ -32,20 +32,24 @@ Run the same `mentiondock login` command at the returned `intervalSeconds` spaci
 
 An API key created for an existing Google account shares that account's credits and records. An account independently provisioned by an administrator uses its issued API key; Google binding is not available in this release, and Google sign-in with the same contact email does not merge accounts. On another computer, use credentials belonging to the same MentionDock account to access its credits. Query and purchase recovery records remain on the computer that created them. To change accounts, use `login --api-key` with the intended account's key or `login` for a Google account. When the user specifies a test service, include its `--service` on login, queries, payments, and recovery commands. `MENTIONDOCK_URL` can also select a service; `--service` takes precedence. The CLI keeps one current login. To switch services, run `logout`, then sign in to the selected service; saved recovery records remain bound to their original account and service.
 
-## Query data
+## Find and research creators
 
 Run `mentiondock help` for current commands and arguments. Common queries:
 
 ```sh
 mentiondock query --json '{"platform":"instagram","handle":"nike","limit":1}'
-mentiondock query --json '{"hashtag":"skincare","limit":10,"minFollowers":10000,"maxFollowers":100000}'
+mentiondock query --json '{"topic":"skincare","limit":10,"minFollowers":10000,"maxFollowers":100000}'
 ```
 
-Queries use existing credits. Choose exactly one of `handle`, `hashtag`, or `keyword`. Set `platform` only when the user wants Instagram or TikTok; omitting it searches stored data from both platforms. Topic queries accept `limit` from 1 to 50 and default to 10. Handle queries default to and require 1. For larger requests, explain the 50-creator limit and direct the user to contact us at https://mentiondock.com.
+Queries use existing credits. Choose exactly one of `topic` to find creators or `handle` to look up an account. Keywords, phrases, and `#tags` all use `topic`; the CLI normalizes case and an optional leading `#` while preserving phrases. Set `platform` only when the user wants Instagram or TikTok; omitting it searches stored data from both platforms. Topic queries accept `limit` from 1 to 50 and default to 10. Handle queries default to and require 1. For larger requests, explain the 50-creator limit and direct the user to contact us at https://mentiondock.com.
 
-Run the query once and wait for it to finish. The CLI checks the saved request internally, writes brief English progress to stderr, and returns final JSON on stdout. When your terminal tool yields a running session, continue waiting on that session. Use `result.items` as the creator data and `costCredits` as the actual charge.
+For creator discovery, choose a topic from the user's product, intended use, and audience. For example, a social-media research tool aimed at marketers calls for topics such as `AI tools` or `AI marketing`. Once the account is connected and the task provides enough context, start a small candidate batch proportionate to the requested shortlist. Resolve topic wording from the available context; ask for missing information when it would materially change whom to find. Assess the returned profiles and posts for fit, and choose another topic when completed results leave a concrete gap.
 
-Topic searches filter stored follower counts and leave existing profiles unchanged. If the results are insufficient, the backend collects once on the selected platform, or TikTok when platform is omitted. Instagram collection supports handles and hashtags; Instagram keyword searches use stored data only. A handle lookup refreshes that profile when needed and uses its stored platform, or TikTok if no stored account exists and no platform was selected. Results may still contain fewer creators than requested.
+Run each query once. The CLI checks the saved request internally, writes brief English progress to stderr, and returns final JSON on stdout. When your terminal tool yields a running session, keep that session for the query. For independent queries, receive and inspect each completed result as soon as it is ready; keep each wait independently resumable so a slower query does not hold back a finished one. Use `result.items` as the creator data and `costCredits` as the actual charge.
+
+Complete a requested shortlist as soon as enough supported candidates satisfy the user's criteria. Deliver it from the completed results and end the discovery phase. Keep the original IDs of any unfinished queries available for recovery and describe their status accurately; further waiting serves a remaining user requirement or a concrete gap in the shortlist. Refresh a chosen account by handle when its stored profile age could change whether it qualifies.
+
+Topic searches filter stored follower counts and leave existing profiles unchanged. If the results are insufficient, the backend collects once on the selected platform, or TikTok when platform is omitted. A handle lookup refreshes that profile when needed and uses its stored platform, or TikTok if no stored account exists and no platform was selected. Results may still contain fewer creators than requested.
 
 Each creator includes up to five `recentPosts` already stored by the service, with basic post fields. These are the latest stored posts, and may differ from the platform's latest posts. Use `profileObservedAt`, `followerCountObservedAt`, and missing values when assessing the data. Make claims about location, audience demographics, contact details, or willingness to collaborate only when the data supports them. Keep each returned platform account distinct, distinguish raw facts from your analysis, and produce the list or report the user needs.
 
