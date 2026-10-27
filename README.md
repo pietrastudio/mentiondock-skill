@@ -6,7 +6,7 @@ Find Instagram and TikTok creators by handle, hashtag, or topic, then let your A
 
 This repository distributes the MentionDock Skill and agent integration metadata, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
 
-This branch prepares API-key support for an upcoming MentionDock CLI release. Its Skill requires that matching release. Installation instructions and version metadata remain pinned to published `mentiondock@0.1.2` until that release is available; this candidate is not ready for public installation.
+This Skill targets the published `mentiondock@0.1.4` CLI, including API-key connections, Google session renewal, and product suggestions.
 
 ## Requirements
 
@@ -20,11 +20,11 @@ This branch prepares API-key support for an upcoming MentionDock CLI release. It
 Install the matching CLI once, before adding the Skill:
 
 ```sh
-npm i -g mentiondock@0.1.2 --ignore-scripts
+npm i -g mentiondock@0.1.4 --ignore-scripts
 mentiondock --version
 ```
 
-The version command should print `0.1.2`. Ensure npm's global command directory is on your `PATH`.
+The version command should print `0.1.4`. Ensure npm's global command directory is on your `PATH`.
 
 `--ignore-scripts` skips the CLI package's automatic Skill installation. Choose one of the following installation methods to let your agent manage its own copy of the Skill.
 
@@ -67,7 +67,7 @@ Start a new agent session after installing, then ask:
 
 > Use MentionDock to find 10 skincare creators on Instagram with 10,000 to 100,000 followers, and compare their recent stored posts.
 
-The agent checks your saved connection. With the candidate CLI, an available API key can connect directly with `mentiondock login --api-key "<key>"`; omitting the key opens a hidden prompt. Google sign-in remains available in your browser:
+The agent checks your saved connection. An available API key can connect directly with `mentiondock login --api-key "<key>"`; omitting the key opens a hidden prompt. Google sign-in remains available in your browser:
 
 ```sh
 mentiondock login
@@ -80,7 +80,7 @@ Data queries use existing credits. Credit purchases and subscriptions require yo
 ## What you can inspect
 
 - [The Skill](skills/mentiondock/SKILL.md): the complete instructions your agent receives.
-- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.2?activeTab=code): the code that runs locally.
+- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.4?activeTab=code): the code that runs locally.
 - [Security and permissions](SECURITY.md): local files, network destinations, login, payment, and the scope of available checks.
 
 All integrations load the same Skill. A supported installation format, a directory listing, and a security assessment are different things; this repository makes no claim of platform security certification.
