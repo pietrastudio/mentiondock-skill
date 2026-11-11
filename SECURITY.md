@@ -1,6 +1,6 @@
 # Security and permissions
 
-This document describes the MentionDock Skill and the matching `mentiondock@0.1.6` CLI. The dated checks below retain their original version scope. This is a permission and behavior disclosure, not a security certification.
+This document describes the MentionDock Skill and the matching `mentiondock@0.1.8` CLI. The dated checks below retain their original version scope. This is a permission and behavior disclosure, not a security certification.
 
 ## Repository and execution boundary
 
@@ -8,11 +8,11 @@ This repository contains readable Skill instructions and integration metadata. I
 
 The Skill tells an agent how to use the separately installed MentionDock CLI. That CLI runs with the local permissions you grant your agent and terminal. The Skill is not a sandbox, and an agent's confirmation behavior also depends on the agent and its settings.
 
-The [CLI package](https://www.npmjs.com/package/mentiondock/v/0.1.6?activeTab=code) contains JavaScript source that can be inspected before installation.
+The [CLI package](https://www.npmjs.com/package/mentiondock/v/0.1.8?activeTab=code) contains JavaScript source that can be inspected before installation.
 
 ## Installation and updates
 
-The recommended installation command in this repository uses `npm i -g mentiondock@0.1.6 --ignore-scripts`. It installs the CLI in npm's global directory and skips package lifecycle scripts. Your selected agent or Skill installer then manages the Skill files.
+The recommended installation command in this repository uses `npm i -g mentiondock@0.1.8 --ignore-scripts`. It installs the CLI in npm's global directory and skips package lifecycle scripts. Your selected agent or Skill installer then manages the Skill files.
 
 When installed globally **without** `--ignore-scripts`, the CLI's `postinstall` installs default user-level Codex and Claude Code Skills, or refreshes previously registered Skill locations. The interactive `npx mentiondock@latest` setup instead displays the installation plan for confirmation.
 
@@ -35,6 +35,8 @@ The CLI stores its own state under `~/.mentiondock`:
 Business state directories are created with Unix mode `0700`, and state files with mode `0600`. Credentials are stored as local JSON, not encrypted in an operating-system keychain. Protect the local user account and avoid sharing these files.
 
 Skill installation also writes the chosen user or project Skill directories and installer lock files. Global CLI installation writes npm's configured global location.
+
+During creator research, the agent saves complete query responses in task-local JSON files and reads the fields needed for the recommendation. These source files remain with the task for later verification.
 
 `mentiondock logout` removes the local credentials and pending login. For Google connections it also revokes the current refresh session; existing access tokens retain their expiry. For API-key connections it clears only this computer’s copy, and key revocation remains a separate administrator action. Query and billing recovery records remain; other devices and subscription renewal are unaffected.
 
