@@ -1,6 +1,6 @@
 {
   "name": "mentiondock",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Find and analyze Instagram and TikTok creator data with the MentionDock CLI.",
   "author": {
     "name": "MentionDock"

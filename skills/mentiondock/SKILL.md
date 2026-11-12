@@ -32,13 +32,13 @@ Connect the intended MentionDock account. An API key issued for an existing Goog
 
 ## Find and research creators
 
-Use the user's requested count, platform, follower range, content focus and other stated requirements as the acceptance criteria. Run `mentiondock help` for command arguments. For discovery, submit one query with a few ordered, related `topics` chosen from that goal:
+Use the user's requested count, platform, follower range, content focus and other stated requirements as the acceptance criteria. Run `mentiondock help` for command arguments. For discovery, choose a few actual hashtags for that goal and submit them as the ordered `topics` array:
 
 ```sh
-mentiondock query --json '{"topics":["skincare","skin care routine"],"platform":"instagram","limit":10,"minFollowers":1000000,"maxFollowers":5000000}'
+mentiondock query --json '{"topics":["skincare","skincareroutine"],"platform":"instagram","limit":10,"minFollowers":1000000,"maxFollowers":5000000}'
 ```
 
-Put the preferred topic first. The service uses the terms together and tries later sources when more candidates are needed. Choose a batch proportionate to the requested shortlist. Topic queries accept `limit` from 1 to 50, defaulting to 10; each topic accepts up to 200 characters. Omitting `platform` searches stored Instagram and TikTok accounts. Direct larger-batch requests to https://mentiondock.com.
+Each topic names a complete hashtag: `skincare` or `#skincare` matches that tag, while `skincareroutine` names a separate tag. Put the preferred hashtag first. The service uses matching stored accounts first and collects more when needed. Choose a batch proportionate to the requested shortlist. Hashtag queries accept `limit` from 1 to 50, defaulting to 10; each tag accepts up to 200 characters. Omitting `platform` includes Instagram and TikTok. Direct larger-batch requests to https://mentiondock.com.
 
 For a specific known account, use `handle`:
 
@@ -62,19 +62,19 @@ node -p 'JSON.parse(require("node:fs").readFileSync("work/creators-result.json",
 
 Read the top-level `status` and request metadata first; accounts are in `result.items`. Once `SUCCEEDED`, use this saved response as the source for the shortlist. Inspect the account fields and post excerpts needed for the decision with local file tools; open additional fields from the same file when they affect a recommendation. Keep tool output focused on those fields so that long captions and image URLs stay available in the file. Use a separate file for each request, and reuse completed files throughout the task. Keep each completed JSON response with the task's source records so the recommendation remains traceable.
 
-The response includes `returnedRows`, `requestedRows`, `shortfallRows`, `costCredits` and `hasMore`. Count `costCredits` once per request. Profile and post reads share the original charge and account set. Preserve string, empty-string and `null` bios as returned, and combine the account's own description with its posts.
+The response includes `returnedRows`, `requestedRows`, `shortfallRows` and `costCredits`. These counts describe the completed batch. Count `costCredits` once per request. Profile and post reads share the original charge and account set. Preserve string, empty-string and `null` bios as returned, and combine the account's own description with its posts.
 
 ### Recommend when the user's criteria are met
 
 Assess the returned accounts against the user's stated requirements, explain their fit using profile and post evidence, and deliver when enough supported candidates satisfy those requirements. Describe personal, doctor-led, clinic or brand accounts accurately from the available facts. Apply personal-only or other account-type restrictions when the user requests them.
 
-A new page, topic query or handle check serves a concrete gap in those requirements or a user's request for further research. First use the results already saved for this task. When additional candidates are needed and `hasMore` is true, submit a page using the previous request ID as its only condition:
+A further batch, a new hashtag query or a handle check serves a concrete gap in those requirements or the user's request for further research. First use the results already saved for this task. For more accounts under the same conditions, submit a new batch using the latest completed batch ID as its only condition:
 
 ```sh
 mentiondock query --json '{"afterRequestId":"<previous-request-id>"}'
 ```
 
-A page inherits the original topics, platform, follower range and batch size, scans further stored accounts, and has its own ID and charge for delivered creators. Change topics when completed results show a gap that different wording can address. Use a handle check for a specific known account whose details the task needs refreshed.
+The next batch inherits the original hashtags, platform, follower range and count. The service continues from its saved search progress, reuses stored results and collects more when needed, with earlier batches' delivered accounts excluded. Each batch has its own ID and charge for the accounts it delivers. Use the latest batch's actual count and evidence to decide whether another batch serves the user's goal. A batch may contain fewer accounts than requested, including zero. Choose new hashtags when a different topic can address the remaining need. Use a handle check for a specific known account whose details the task needs refreshed.
 
 Process independent completed requests as they become available. Once the shortlist is supported, deliver it and preserve IDs and accurate statuses for other requests still running. Claims about location, audience demographics, contact details, originality and willingness to collaborate require supporting data.
 
