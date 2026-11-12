@@ -1,12 +1,12 @@
 # MentionDock
 
-通过有序话题查找 Instagram、TikTok 创作者，或按用户名查询指定账号；客户 AI 按请求编号读取资料与帖子，结合账号简介判断目标适配。
+通过实际 Hashtag、平台与粉丝范围查找 Instagram、TikTok 创作者，或按用户名查询指定账号；客户 AI 按请求编号读取资料与帖子，结合账号简介判断目标适配。
 
 [Website](https://mentiondock.com) · [CLI on npm](https://www.npmjs.com/package/mentiondock) · [On skills.sh](https://skills.sh/pietrastudio/mentiondock-skill/mentiondock) · [Security and permissions](SECURITY.md)
 
 This repository distributes the MentionDock Skill and agent integration metadata, with an explicit boundary for handling untrusted creator content. It contains no executable scripts, hooks, or MCP servers; the separately installed CLI performs login, data queries, and billing actions.
 
-本 Skill 配套 `mentiondock@0.1.8`：以 `topics/handle` 提交查询，凭原编号读取结果，使用 `afterRequestId` 获取后续页。账号简介与帖子共同作为判断依据；API key 连接、Google 会话续期和产品建议沿用原有流程。
+本 Skill 配套 `mentiondock@0.1.9`：`topics` 填写实际 Hashtag，`handle` 查询具体账号，凭原编号读取固定名单。`afterRequestId` 沿保存的搜索进度继续一批，排除此前交付的账号；AI 根据每批实际人数决定后续查询。账号简介与帖子共同作为判断依据；API key 连接、Google 会话续期和产品建议沿用原有流程。
 
 完整查询结果保存在任务文件，AI 按需读取并在满足用户要求时完成推荐。登录由 CLI 打开授权页，AI 根据返回状态继续任务。
 
@@ -22,11 +22,11 @@ This repository distributes the MentionDock Skill and agent integration metadata
 Install the matching CLI once, before adding the Skill:
 
 ```sh
-npm i -g mentiondock@0.1.8 --ignore-scripts
+npm i -g mentiondock@0.1.9 --ignore-scripts
 mentiondock --version
 ```
 
-The version command should print `0.1.8`. Ensure npm's global command directory is on your `PATH`.
+The version command should print `0.1.9`. Ensure npm's global command directory is on your `PATH`.
 
 `--ignore-scripts` skips the CLI package's automatic Skill installation. Choose one of the following installation methods to let your agent manage its own copy of the Skill.
 
@@ -82,7 +82,7 @@ Data queries use existing credits. Credit purchases and subscriptions require yo
 ## What you can inspect
 
 - [The Skill](skills/mentiondock/SKILL.md): the complete instructions your agent receives.
-- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.8?activeTab=code): the code that runs locally.
+- [The published CLI source](https://www.npmjs.com/package/mentiondock/v/0.1.9?activeTab=code): the code that runs locally.
 - [Security and permissions](SECURITY.md): local files, network destinations, login, payment, and the scope of available checks.
 
 All integrations load the same Skill. A supported installation format, a directory listing, and a security assessment are different things; this repository makes no claim of platform security certification.
